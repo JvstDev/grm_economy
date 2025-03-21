@@ -5,6 +5,8 @@ Grm Economy gamemode provide a backward for the old esx scripts:
 - esx_addonaccount
 - esx_vehicleshop
 
+----
+
 ## Vehicle keys system:
 ```lua
 ---@return void
