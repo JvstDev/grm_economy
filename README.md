@@ -1,9 +1,9 @@
 
 ## ESX Provieders
-Grm Economy gamemode also provide a backward for the old esx scripts
-```lua
-
-```
+Grm Economy gamemode provide a backward for the old esx scripts:
+- esx_staus
+- esx_addonaccount
+- esx_vehicleshop
 
 ## Vehicle keys system:
 ```lua
@@ -27,6 +27,8 @@ exports['cfx-grm_economy-core']:log({
     channel: string, -- channel name (grm_core.cfg/grm:logs)
     webhook: string|nil, -- use direct webhook or predefined channels
     header: string, -- embed header
+    username: string, -- sender name
+    color: number, -- embed color (decimal)
     content: string, -- embed content
     player: number -- (optional) player source, show all player stats
 })
