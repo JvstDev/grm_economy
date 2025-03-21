@@ -1,64 +1,89 @@
+# GRM Economy Gamemode Documentation
 
-# Provieders
-Grm Economy gamemode provide a backward for the old esx scripts:
-- esx_staus
-- esx_addonaccount
-- esx_vehicleshop
+**For further assistance, updates or support visit our [**Discord Server**](https://discord.gg/bsepA3pmQP).**
 
-----
+---
 
-## Vehicle keys system:
+## ESX Compatibility Overview
+
+This gamemode supports various ESX scripts, with different levels of functionality:
+
+- **Fully Functional:**
+  - `esx_status`
+  - `esx_vehicleshop`
+- **Partially Functional:**
+  - `esx_addonaccount`
+
+---
+
+## Vehicle Key Management
+
+Manage vehicle keys dynamically within the game.
+
 ```lua
----@return void
-exports['cfx-grm_economy-core']:generateVehicleKeys(entity: string|number)
+-- Generate keys for a vehicle
+exports['cfx-grm_economy-core']:generateVehicleKeys(entity)
 
----@return void
-exports['cfx-grm_economy-core']:removeVehicleKeys(entity: string|number) 
+-- Remove keys from a vehicle
+exports['cfx-grm_economy-core']:removeVehicleKeys(entity)
 ```
 
-## Payments system:
+---
+
+## Payment Processing
+
+Handle in-game transactions securely.
+
 ```lua
----@return boolean
-exports['cfx-grm_economy-core']:payment(price: number, product: string) 
+-- Process a payment
+local success = exports['cfx-grm_economy-core']:payment(price, product)
+if success then
+    print("Payment successful!")
+else
+    print("Payment failed.")
+end
 ```
 
-## Logs system:
+---
+
+## Logging System
+
+Log important in-game events efficiently.
+
 ```lua
----@return void
 exports['cfx-grm_economy-core']:log({
-    channel: string, -- channel name (grm_core.cfg/grm:logs)
-    webhook: string|nil, -- use direct webhook or predefined channels
-    header: string, -- embed header
-    username: string, -- sender name
-    color: number, -- embed color (decimal)
-    content: string, -- embed content
-    player: number -- (optional) player source, show all player stats
+    channel = "server-logs", -- Define log channel
+    webhook = nil, -- Optional: Direct webhook URL
+    header = "Event Log", -- Log title
+    username = "GRM Logger", -- Log sender name
+    color = 16711680, -- Log color (red in decimal)
+    content = "A player performed an action.", -- Log message
+    player = 1 -- (Optional) Attach player details
 })
 ```
 
-## Payments system:
+---
+
+## Marker System
+
+Create and manage interactive markers in the game world.
+
 ```lua
----@return boolean
-exports['cfx-grm_economy-core']:payment(price: number, product: string) 
-```
+-- Remove an existing marker
+exports['cfx-grm_economy-core']:removeMarker(markerID)
 
-## Markers system:
-```lua
----@return void
-exports['cfx-grm_economy-core']:removeMarker(id: string|number)
-
----@return table
-exports['cfx-grm_economy-core']:registerMarker({
-    id: string|number, -- need to be unique
-    coords: vector3,
-    onPress: function() -- on press [E] callback
-    
+-- Register a new marker
+local markerData = exports['cfx-grm_economy-core']:registerMarker({
+    id = "unique_marker_1", -- Unique marker ID
+    coords = vector3(100.0, 200.0, 300.0),
+    onPress = function()
+        print("Pressed!")
     end,
-    nearby: function() -- if return true inside the function and other will be displayed, else no
-
+    nearby = function()
+        return true -- Show marker only when this function returns true
     end,
-    msg: string, -- textui
-    icon: string, -- textui icon
-    marker: string, -- marker texture (markers.ytd)
+    msg = "Join House", -- UI text
+    icon = "house", -- UI icon
+    marker = "fastfood" -- Marker texture
 })
 ```
