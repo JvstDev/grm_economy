@@ -16,20 +16,6 @@ This gamemode supports various ESX scripts, with different levels of functionali
 
 ---
 
-## Vehicle Key Management
-
-Manage vehicle keys dynamically within the game.
-
-```lua
--- Generate keys for a vehicle
-exports['cfx-grm_economy-core']:generateVehicleKeys(entity)
-
--- Remove keys from a vehicle
-exports['cfx-grm_economy-core']:removeVehicleKeys(entity)
-```
-
----
-
 ## Payment Processing
 
 Handle in-game transactions securely.
